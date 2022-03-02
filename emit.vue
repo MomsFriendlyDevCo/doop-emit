@@ -1,4 +1,5 @@
 <script lang="js" frontend>
+// TODO: Create vue-emit and import
 var methods = {}; // Method's to glue onto vm.$emit
 
 /**
