@@ -18,6 +18,7 @@ app.broadcast = methods.broadcast = (msg, ...payload) => {
 /**
 * Extend the base app.vue.prototye.$emit with app.vue.prototye.$emit.down() which recurses though all children emitting a message
 * NOTE: This does not include the current component level, only the children
+* NOTE: Non-injected $emit components (i.e. without the mixin) are ignored
 * @param {string} msg The name of the event to emit
 * @param {*} [payload...] The payload of the event
 * @returns {VueComponent} This chainable VM
@@ -25,7 +26,8 @@ app.broadcast = methods.broadcast = (msg, ...payload) => {
 methods.down = function(msg, ...payload) {
 	this.$children.forEach(child => {
 		child.$emit.call(child, msg, ...payload);
-		child.$emit.down.call(child, msg, ...payload);
+		if (child.$emit.down) // Only proceed downwards if the child element actually understands $emit.down
+			child.$emit.down.call(child, msg, ...payload);
 	});
 
 	return this;
