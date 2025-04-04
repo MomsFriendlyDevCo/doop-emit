@@ -162,7 +162,7 @@ methods.unschedule = function(msgs) {
 	if (!this.$emit.scheduleHandles) return; // Nothing scheduled anyway
 	_.castArray(msgs || Object.keys(this.$emit.scheduleHandles))
 		.forEach(msg => {
-			clearTimeout(this.$emit.scheduleHandles[msg]);
+			clearTimeout(this.$emit.scheduleHandles[msg]?.timer);
 			delete this.$emit.scheduleHandles[msg];
 		})
 };
