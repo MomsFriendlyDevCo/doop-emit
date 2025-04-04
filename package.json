@@ -1,6 +1,6 @@
 {
   "name": "@doop/emit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An event emission service for the Doop framework",
   "repository": {
     "type": "git",
